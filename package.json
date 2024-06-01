@@ -1,0 +1,27 @@
+{
+  "name": "cloud-music-crud-api",
+  "version": "1.0.0",
+  "description": "A CRUD API for my Cloud Music Database",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Chrstjan/Cloud-Music-CRUD-API.git"
+  },
+  "keywords": [
+    "Cloud",
+    "Music"
+  ],
+  "author": "Chrstjan",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Chrstjan/Cloud-Music-CRUD-API/issues"
+  },
+  "homepage": "https://github.com/Chrstjan/Cloud-Music-CRUD-API#readme",
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}
