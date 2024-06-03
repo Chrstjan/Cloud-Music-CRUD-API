@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 
 import { ArtistController } from "./Controllers/artist.controller.js";
 import { SongController } from "./Controllers/song.controller.js";
+import { AlbumController } from "./Controllers/album.controller.js";
 
 const app = express();
 
@@ -16,7 +17,7 @@ app.get("/", (req, res) => {
   res.send("Welcome to the Cloud Music CRUD API");
 });
 
-app.use(ArtistController, SongController);
+app.use(ArtistController, SongController, AlbumController);
 
 app.use((req, res) => {
   res.status(404).send("The site was not found");
