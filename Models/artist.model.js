@@ -18,7 +18,9 @@ export default class ArtistModel {
     try {
       const { data, error } = await supabase
         .from("artist")
-        .select("*")
+        .select(
+          "id, joined_at, name, description, location_name, country(name)"
+        )
         .eq("name", name)
         .single();
       if (error) {
