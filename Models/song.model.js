@@ -3,7 +3,7 @@ import { supabase } from "../Config/config.supabase.js";
 export default class songModel {
   static async getAllTracks() {
     try {
-      const { data, error } = await supabase.from("tracks").select("id, artist(id), title, image, created_at, updated_at, relased_by, released_at, music_genres(name)");
+      const { data, error } = await supabase.from("tracks").select("id, artist(name), title, image, created_at, updated_at, released_by, released_at, music_genres(name), track");
       if (error) {
         throw new Error(error.message);
       } else {
@@ -18,7 +18,7 @@ export default class songModel {
     try {
       const { data, error } = await supabase
         .from("tracks")
-        .select("id, artist(id), title, image, created_at, updated_at, relased_by, released_at, music_genres(name)")
+        .select("id, artist(name), title, image, created_at, updated_at, released_by, released_at, music_genres(name), track")
         .eq("name", name)
         .single();
       if (error) {
@@ -43,6 +43,7 @@ export default class songModel {
           released_by: formdata.released_by,
           released_at: formdata.released_at,
           song_genre: formdata.song_genre,
+          track: formdata.track
         },
       ]);
       if (error) {
@@ -70,6 +71,7 @@ export default class songModel {
             released_by: formdata.released_by,
             released_at: formdata.released_at,
             song_genre: formdata.song_genre,
+            track: formdata.track
           },
         ])
         .eq("id", formdata.id);
