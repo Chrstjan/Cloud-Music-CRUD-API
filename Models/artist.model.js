@@ -3,7 +3,7 @@ import { supabase } from "../Config/config.supabase.js";
 export default class ArtistModel {
   static async getAllArtists() {
     try {
-      const { data, error } = await supabase.from("artist").select("*");
+      const { data, error } = await supabase.from("artist").select("id, joined_at, name, description, location_name, country(name)");
       if (error) {
         throw new Error(error.message);
       } else {
