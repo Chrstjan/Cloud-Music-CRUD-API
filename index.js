@@ -19,8 +19,11 @@ app.get("/", (req, res) => {
 
 app.use(ArtistController, SongController, AlbumController);
 
-app.use((req, res) => {
+app.use((req, res, next) => {
   res.status(404).send("The site was not found");
+  res.header("Access-Control-Allow-Origin", "*"); // Adjust this if you want to restrict to specific origins
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
 });
 
 app.listen(port, () => {
