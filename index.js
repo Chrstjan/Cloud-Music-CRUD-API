@@ -1,4 +1,5 @@
 import express from "express";
+import cors from "cors";
 import dotenv from "dotenv";
 
 import { ArtistController } from "./Controllers/artist.controller.js";
@@ -12,6 +13,8 @@ app.use(express.urlencoded({ extended: true }));
 dotenv.config();
 
 const port = process.env.PORT;
+
+app.use(cors());
 
 app.get("/", (req, res) => {
   res.send("Welcome to the Cloud Music CRUD API");
