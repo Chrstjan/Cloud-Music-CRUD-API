@@ -6,6 +6,7 @@ import { ArtistController } from "./Controllers/artist.controller.js";
 import { SongController } from "./Controllers/song.controller.js";
 import { AlbumController } from "./Controllers/album.controller.js";
 import { TrackAlbumController } from "./Controllers/track_album.controller.js";
+import { UserController } from "./Controllers/user.controller.js";
 
 const app = express();
 
@@ -25,7 +26,8 @@ app.use(
   ArtistController,
   SongController,
   AlbumController,
-  TrackAlbumController
+  TrackAlbumController,
+  UserController
 );
 
 app.use((req, res, next) => {
