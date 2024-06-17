@@ -45,4 +45,20 @@ export default class UserModel {
       console.error(`Error fetching users: ${error}`);
     }
   }
+
+  static async updateUserRole(userId, role) {
+    try {
+      const { data, error } = await supabaseAdmin
+        .from("public.users")
+        .update({ role: role })
+        .eq("id", userId);
+      if (error) {
+        throw new Error(error.message);
+      } else {
+        return data;
+      }
+    } catch (error) {
+      console.error(`Error updating user role: ${error}`);
+    }
+  }
 }

@@ -33,3 +33,15 @@ UserController.post("/login", async (req, res) => {
     res.status(500).send({ error: error.message });
   }
 });
+
+UserController.put("/users/:userId", async (req, res) => {
+  const userId = req.params.userId;
+  const { role } = req.body;
+  try {
+    const data = await UserModel.updateUserRole(userId, role);
+    res.status(200).send(data);
+  } catch (error) {
+    console.error("Failed to update user role:", error);
+    res.status(500).send({ error: error.message });
+  }
+});
