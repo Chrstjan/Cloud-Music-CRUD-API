@@ -17,6 +17,22 @@ export default class UserModel {
     }
   }
 
+  static async signInWithEmail(email, password) {
+    try {
+      const { data, error } = await supabase.auth.signInWithPassword({
+        email: email,
+        password: password,
+      });
+      if (error) {
+        throw new Error(error.message);
+      } else {
+        return data;
+      }
+    } catch (error) {
+      console.error(`Error signing in user: ${error}`);
+    }
+  }
+
   static async getAllUsers() {
     try {
       const { data, error } = await supabaseAdmin.auth.admin.listUsers();

@@ -11,6 +11,7 @@ UserController.get("/users", async (req, res) => {
     res.status(500).send({ error: error.message });
   }
 });
+
 UserController.post("/signup", async (req, res) => {
   const { email, password } = req.body;
   try {
@@ -18,6 +19,17 @@ UserController.post("/signup", async (req, res) => {
     res.status(201).send(result);
   } catch (error) {
     console.error("Failed to sign up user:", error);
+    res.status(500).send({ error: error.message });
+  }
+});
+
+UserController.post("/login", async (req, res) => {
+  const { email, password } = req.body;
+  try {
+    const data = await UserModel.signInWithEmail(email, password);
+    res.status(200).send(data);
+  } catch (error) {
+    console.error(`Failed to sign in user: ${error}`);
     res.status(500).send({ error: error.message });
   }
 });
