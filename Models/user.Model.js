@@ -49,7 +49,7 @@ export default class UserModel {
   static async updateUserRole(userId, role) {
     try {
       const { data, error } = await supabaseAdmin
-        .from("public.users")
+        .from("users")
         .update({ role: role })
         .eq("id", userId);
       if (error) {
@@ -59,6 +59,7 @@ export default class UserModel {
       }
     } catch (error) {
       console.error(`Error updating user role: ${error}`);
+      throw error; // Ensure the error is propagated to the caller
     }
   }
 }

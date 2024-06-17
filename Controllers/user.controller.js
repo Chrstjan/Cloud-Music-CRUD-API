@@ -12,6 +12,18 @@ UserController.get("/users", async (req, res) => {
   }
 });
 
+UserController.put("/users/:userId", async (req, res) => {
+  const userId = req.params.userId;
+  const { role } = req.body;
+  try {
+    const result = await UserModel.updateUserRole(userId, role);
+    res.status(200).send(result);
+  } catch (error) {
+    console.error("Failed to update user role:", error);
+    res.status(500).send({ error: error.message });
+  }
+});
+
 UserController.post("/signup", async (req, res) => {
   const { email, password } = req.body;
   try {
@@ -30,18 +42,6 @@ UserController.post("/login", async (req, res) => {
     res.status(200).send(data);
   } catch (error) {
     console.error(`Failed to sign in user: ${error}`);
-    res.status(500).send({ error: error.message });
-  }
-});
-
-UserController.put("/users/:userId", async (req, res) => {
-  const userId = req.params.userId;
-  const { role } = req.body;
-  try {
-    const data = await UserModel.updateUserRole(userId, role);
-    res.status(200).send(data);
-  } catch (error) {
-    console.error("Failed to update user role:", error);
     res.status(500).send({ error: error.message });
   }
 });
