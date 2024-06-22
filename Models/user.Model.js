@@ -6,6 +6,13 @@ export default class UserModel {
       const { data, error } = await supabase.auth.signUp({
         email: formdata.email,
         password: formdata.password,
+        options: {
+          data: {
+            username: formdata.username,
+            full_name: formdata.full_name,
+            avatar_url: formdata.avatar_url || "", // Optional avatar URL
+          },
+        },
       });
 
       if (error) {
