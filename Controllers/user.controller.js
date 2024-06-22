@@ -25,9 +25,8 @@ UserController.put("/users/:userId", async (req, res) => {
 });
 
 UserController.post("/signup", async (req, res) => {
-  const { email, password } = req.body;
   try {
-    const result = await UserModel.signUpNewUser(email, password);
+    const result = await UserModel.signUpNewUser(req.body);
     res.status(201).send(result);
   } catch (error) {
     console.error("Failed to sign up user:", error);

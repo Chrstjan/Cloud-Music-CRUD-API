@@ -1,19 +1,21 @@
 import { supabase, supabaseAdmin } from "../Config/config.supabase.js";
 
 export default class UserModel {
-  static async signUpNewUser(email, password) {
+  static async signUpNewUser(formdata) {
     try {
       const { data, error } = await supabase.auth.signUp({
-        email: email,
-        password: password,
+        email: formdata.email,
+        password: formdata.password,
       });
+
       if (error) {
         throw new Error(error.message);
-      } else {
-        return data;
       }
+
+      return data;
     } catch (error) {
       console.error(`Error signing up new user: ${error}`);
+      throw error; // Ensure the error is propagated to the caller
     }
   }
 
