@@ -11,6 +11,7 @@ export default class UserModel {
             username: formdata.username,
             full_name: formdata.full_name,
             avatar_url: formdata.avatar_url || "", // Optional avatar URL
+            role: formdata.role,
           },
         },
       });
